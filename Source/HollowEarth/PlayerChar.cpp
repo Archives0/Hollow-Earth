@@ -32,3 +32,7 @@ void APlayerChar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 }
 
+void APlayerChar::InitializePlayer()
+{
+	
+}
