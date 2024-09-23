@@ -19,7 +19,7 @@ protected:
 
 public:	
 	
-	APawn* owner{};
+	ACharacter* owner{};
 
 	UMovement();
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;

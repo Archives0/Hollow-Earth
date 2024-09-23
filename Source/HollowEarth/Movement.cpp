@@ -2,6 +2,9 @@
 
 
 #include "Movement.h"
+#include "GameFramework/Character.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
+#include "AIController.h"
 
 // Sets default values for this component's properties
 UMovement::UMovement()
@@ -22,7 +25,7 @@ void UMovement::BeginPlay()
 
 void UMovement::CheckValid()
 {
-	owner = Cast<APawn>(GetOwner());
+	owner = Cast<ACharacter>(GetOwner());
 
 	if (!owner)
 		UE_LOG(LogTemp, Warning, TEXT("Movement component attached to actor which cannot move."));
@@ -41,7 +44,12 @@ void UMovement::MoveToPoint(FVector destination)
 
 	if (owner)
 	{
-		owner->SetActorLocation(destination);
+		AController* controller = owner->GetController();
+
+		if (controller)
+		{
+			UAIBlueprintHelperLibrary::SimpleMoveToLocation(controller, destination);
+		}
 	}
 }
 
